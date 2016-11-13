@@ -8,6 +8,6 @@ COPY sshd_config /etc/ssh/sshd_config
 
 COPY entrypoint.sh /
 
-EXPOSE 22 60001-60100/udp
+EXPOSE 22 3000 60001-60100/udp
 
 ENTRYPOINT ["bash", "/entrypoint.sh"]
