@@ -1,7 +1,13 @@
-FROM alpine:latest
-MAINTAINER andrelite <andre@andre.io>
-RUN apk update && apk add openssh
-RUN mkdir /root/.ssh
-RUN echo $SSH_KEY > /root/.ssh/authorized_keys 
-EXPOSE 22
-CMD ["/usr/bin/ssh", "-D"]
+FROM mhart/alpine-node:6
+
+MAINTAINER andreleite <andre@andre.io>
+
+RUN apk --no-cache --update-cache add bash openssh sudo mosh-server git vim tmux curl
+
+COPY sshd_config /etc/ssh/sshd_config
+
+COPY entrypoint.sh /
+
+EXPOSE 22 60001-60100/udp
+
+ENTRYPOINT ["bash", "/entrypoint.sh"]
