@@ -2,7 +2,6 @@ FROM mhart/alpine-node:6
 
 MAINTAINER andreleite <andre@andre.io>
 
-RUN sed -i -e 's/v3\.4/edge/g' /etc/apk/repositories
 RUN apk --no-cache --update-cache add bash openssh sudo mosh-server git vim tmux curl
 
 COPY sshd_config /etc/ssh/sshd_config
